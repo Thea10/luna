@@ -1,0 +1,144 @@
+@import "variables.scss";
+.container {
+    color: $darkText;
+    h2 {
+        font-size: 14px;
+        font-weight: 600;
+        @include md-min {
+            font-size: 20px;
+            width: 75%;
+            margin: auto;
+        }
+    }
+    h3 {
+        font-size: 12px;
+        font-weight: 600;
+        @include md-min {
+            font-size: 15px;
+            /* font-size: 21px; */
+            width: 75%;
+            margin: auto;
+        }
+    }
+    h4 {
+        font-size: 12px;
+        font-weight: 600;
+        @include md-min {
+            font-size: 13px;
+        }
+    }
+    a {
+        color: $primary;
+        font-weight: 600;
+        img {
+            height: 25px;
+            margin: auto 1rem;
+            border-radius: 5px;
+            transition: all 0.6s;
+        }
+        &:hover {
+            img {
+                box-shadow: 1px 1px 1px rgb(0 0 0 / 7%);
+            }
+        }
+    }
+    .form-holder {
+        //  background: $lightBg;
+        background: #ffffffb5;
+        //box-shadow: inset 0px 0px 0px 2px $lightBg;
+        //  box-shadow: inset 0px 2px 2px $primary;
+        border-radius: 10px;
+        padding: 3rem;
+        width: 90%;
+        margin: auto;
+        span.text-danger {
+            font-size: 0.6rem;
+        }
+        .btn.form-control {
+            background: $primary;
+            // background: $primary;
+            transition: all 0.8s ease-in-out;
+            border-radius: 10px;
+            color: $white;
+            font-size: 12px;
+            padding: .375rem 2rem;
+            &:hover,
+            &:focus {
+                box-shadow: none;
+                background: -webkit-linear-gradient(#c79b1ab5, #c1920cc7);
+                background: linear-gradient(#c79b1ab5, #c1920cc7);
+                color: $white;
+            }
+            &.float-right {
+                border-radius: 10px;
+            }
+        }
+        .social {
+            margin-top: 1rem;
+            @include md-min {
+                margin-left: 4rem;
+            }
+        }
+        small,
+        h5 {
+            text-align: left;
+            a {
+                font-size: 10px;
+                color: $darkText;
+            }
+            @include md-min {
+                margin-left: 4rem;
+            }
+        }
+        @include md-min {
+            width: 70%;
+        }
+        @include lg-min {
+            width: 50%;
+            .form-group {
+                width: 75%;
+                margin: auto;
+            }
+        }
+    }
+}
+
+.form-control {
+    // background: $white;
+    //  background: #f3e5bb !important; // border-radius: 10px;
+    border: none;
+    font-size: 12px;
+    font-weight: 600;
+    color: $grey;
+    height: calc(2em + .75rem + 2px);
+    border-bottom: 1px solid $primary;
+    border-radius: 0.15rem;
+    transition: all 0.5s;
+    &:hover,
+    &:focus {
+        box-shadow: none;
+        border-bottom: 2px solid $primary;
+    }
+    &.error {
+        border-bottom: 2px solid #ff0000 !important;
+        .fa {
+            color: #ff0000 !important;
+        }
+    }
+}
+
+ ::placeholder {
+    color: rgba(0, 0, 0, 0.35);
+}
+
+ :-moz-placeholder {
+    color: rgba(0, 0, 0, 0.35);
+}
+
+ :-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.35);
+}
+
+ ::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.35);
+}

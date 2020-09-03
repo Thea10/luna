@@ -1,0 +1,56 @@
+$primary: #D7A81E;
+$primaryLight: rgba(215, 168, 30, 0.57);
+;
+$primaryGrey: rgba(0, 0, 0, 0.2);
+;
+$adminAction: #00C29E;
+$grey: rgba(9, 9, 9, 0.54);
+$inactive: rgba(0, 0, 0, 0.54);
+$darkText: rgba(0, 0, 0, 0.63);
+$lightBg: rgba(215, 168, 30, 0.3);
+$price: rgba(5, 5, 5, 0.6);
+$white: #ffffff;
+$screen-xsm-max: 475px;
+$screen-sm-max: 575px;
+$screen-md-max: 767px;
+$screen-lg-max: 991px;
+$screen-xl-max: 1199px;
+$screen-sm-min: 576px;
+$screen-md-min: 768px;
+$screen-lg-min: 992px;
+$screen-xl-min: 1200px;
+@mixin xsm-max {
+    @media (max-width: #{$screen-xsm-max}) {
+        @content;
+    }
+}
+
+@mixin sm-max {
+    @media (max-width: #{$screen-sm-max}) {
+        @content;
+    }
+}
+
+@mixin md-max {
+    @media(max-width: #{$screen-md-max}) {
+        @content;
+    }
+}
+
+@mixin sm-min {
+    @media(min-width: #{$screen-sm-min}) {
+        @content;
+    }
+}
+
+@mixin md-min {
+    @media(min-width: #{$screen-md-min}) {
+        @content;
+    }
+}
+
+@mixin lg-min {
+    @media(min-width: #{$screen-lg-min}) {
+        @content;
+    }
+}
