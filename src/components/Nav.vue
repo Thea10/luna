@@ -69,8 +69,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 @import "@/assets/variables.scss";
+@import "@/assets/keyframes.scss";
 
 .nav {
   // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
@@ -175,7 +176,7 @@ export default {
         .far {
           border-radius: 50%;
           padding: 1rem;
-          border: 0.5px solid $inactive;
+          border: 1px solid $inactive;
           color: $inactive;
           transition: all 0.8s;
           -webkit-text-stroke: medium;
@@ -253,17 +254,18 @@ export default {
         animation: slowslosh 15s linear infinite;
         position: absolute;
       }
-    }
 
-    &:hover {
-      .waves {
-        &::before,
+      &:hover{
+          &::before,
         &::after {
           -webkit-animation: slowslosh 8s linear infinite;
           animation: slowslosh 8s linear infinite;
         }
+
       }
     }
+
+   
   }
 
   @include md-max {
@@ -289,7 +291,7 @@ export default {
           .far {
             border-radius: 50%;
             padding: 1rem;
-            border: 0.5px solid $white;
+            // border: 0.5px solid $white;
             // color: $white;
             -webkit-text-fill-color: #ffffff00;
           }
@@ -347,13 +349,5 @@ export default {
   }
 }
 
-@keyframes slowslosh {
-  0% {
-    transform: translate(0%, -50%) rotate(0deg);
-  }
 
-  100% {
-    transform: translate(0%, -150%) rotate(360deg);
-  }
-}
 </style>

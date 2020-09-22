@@ -33,6 +33,8 @@
               v-model="form.password"
               class="form-control border-0 h-100 bg-transparent"
               required
+            
+             
             />
             <span class="input-group-text bg-transparent border-0">
               <i
@@ -50,7 +52,7 @@
         </div>
 
         <h5>
-          <router-link to="forgot-password">I can’t remember my password</router-link>
+          <router-link to="forgot-password"> Forgot Password?</router-link>
         </h5>
 
         <div class="d-flex flex-wrap align-items-center social">

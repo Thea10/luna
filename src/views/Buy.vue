@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container buy">
     <h2 class="mb-5" style="margin-top: -23px">MADE BY LUNA</h2>
 
     <section class="product-body">
@@ -14,60 +14,23 @@
         />
       </div>
 
-      <product-list :products="filterProducts" />
+      <product-list  :products="filterProducts"  />
     </section>
   </div>
 </template>
 
 <script>
+ import { mapGetters } from "vuex";
 import Search from "../components/Search";
-import ProductList from "../components/ProductList";
+import ProductList from "../components/Product/ProductList";
 import _ from "lodash";
 export default {
   name: "Buy",
   data() {
     return {
-      products: [
-        {
-          id: 1,
-          name: "Honey",
-          price: 1500,
-          size: 500,
-          img: require("../assets/honey-500.jpeg")
-        },
-        {
-          id: 2,
-          name: "Coconut Oil",
-          price: 1200,
-          size: 150,
-          img: require("../assets/coco-150.jpeg")
-        },
-        {
-          id: 3,
-          name: "Honey",
-          price: 1200,
-          size: 300,
-          img: require("../assets/honey-300.jpg")
-        },
-        {
-          id: 4,
-          name: "Coconut Oil",
-          price: 500,
-          size: 50,
-          img: require("../assets/coco-50.jpeg")
-        },
-        {
-          id: 5,
-          name: "Coconut Oil",
-          price: 1700,
-          size: "50 150",
-          img: require("../assets/coco15050.jpeg")
-        }
-      ],
-
       searchField: "",
       filterKey: "size",
-      orderKey: "desc"
+      orderKey: "desc",
     };
   },
   components: {
@@ -76,6 +39,7 @@ export default {
   },
 
   methods: {
+  
     SearchProducts: function(searchtext) {
       this.searchField = searchtext;
     },
@@ -87,13 +51,14 @@ export default {
     }
   },
   computed: {
-    searchedProducts: function() {
+    ...mapGetters({products: "getProducts"}),
+    searchedProducts() {
       return this.products.filter(product => {
         return product.name.toLowerCase().match(this.searchField.toLowerCase());
       });
     },
 
-    filterProducts: function() {
+    filterProducts() {
       return _.orderBy(
         this.searchedProducts,
         product => {
@@ -108,20 +73,11 @@ export default {
 
 <style lang="scss">
 @import "@/assets/variables.scss";
+@import "@/assets/keyframes.scss";
 
-@keyframes beat {
-  from {
-    transform: scale3d(1, 1, 1);
-  }
-  50% {
-    transform: scale3d(1.01, 1.01, 1.01);
-  }
-  to {
-    transform: scale3d(1, 1, 1);
-  }
-}
 
-.container {
+
+.buy {
   color: $darkText;
   h2 {
     font-size: 20px;
@@ -163,18 +119,48 @@ export default {
     -webkit-text-stroke-width: medium;
     -webkit-text-fill-color: white;
     transition: all 0.5s;
+        margin-top: 0.2rem;
 
-    &:hover,
+    &:hover, &.focus,
     &.favorited {
-      color: $primary;
+       color: $primary;
       -webkit-text-fill-color: $primary;
+    }
+
+    &.favorited:hover, &.favorited:focus{
+         -webkit-text-fill-color: white;
     }
   }
 
+  .btn {
+    border-radius: 10px 0px;
+  }
+
   .product-body {
+    .dropdown-menu {
+      top: 30px !important;
+      left: -46px !important;
+
+   .dropdown-item{
+     font-size: 0.8rem;
+
+    &:focus, &:hover {
+        color: $primary;
+        text-decoration: none;
+        background-color: #f8f9fa;
+        
+
+        i {
+          color: $primary;
+        }
+      }
+   }
+     
+    }
+
     .row {
       .item {
-        height: 350px;
+        height: 300px;
         background: #ffffff;
         box-shadow: 0px 0px 0px 1px rgb(234 188 53 / 81%);
         border-radius: 5px;
@@ -213,9 +199,7 @@ export default {
           }
         }
 
-        @include md-min {
-          height: 340px;
-        }
+     
 
         @include xsm-max {
           height: 325px;

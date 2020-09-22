@@ -22,6 +22,7 @@ export default {
 
 <style lang="scss">
 @import "@/assets/variables.scss";
+@import "@/assets/keyframes.scss";
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -58,6 +59,11 @@ export default {
   height: 70px;
   width: 60px;
 }
+.item-text {
+      animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 1s both;
+      -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 1s
+        both;
+    }
 
 ::-webkit-scrollbar {
   -webkit-appearance: none;

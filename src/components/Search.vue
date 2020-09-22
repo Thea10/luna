@@ -12,29 +12,29 @@
       <button
         id="dropdownId"
         type="button"
-        class="btn dropdown-toggle mb-2"
+        class="btn dropdown-toggle"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
-      >Sort By</button>
+      > <i class="fa fa-filter" aria-hidden="true"></i> </button>
       <div class="dropdown-menu" aria-labelledby="dropdownId">
         <a class="dropdown-item" href="#" @click="$emit('filteritem', 'price')">
           Price
-          <i class="fa fa-shopping-cart" aria-hidden="true" v-if="filterBy === 'price' "></i>
+          <i class="fa fa-filter" aria-hidden="true" v-if="filterBy === 'price' "></i>
         </a>
         <a class="dropdown-item" href="#" @click="$emit('filteritem', 'price')">
           Size
-          <i class="fa fa-shopping-cart" aria-hidden="true" v-if="filterBy === 'size'"></i>
+          <i class="fa fa-filter" aria-hidden="true" v-if="filterBy === 'size'"></i>
         </a>
 
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#" @click="$emit('filterorder', 'asc')">
           Ascending
-          <i class="fa fa-shopping-cart" aria-hidden="true" v-if="orderBy === 'asc'"></i>
+          <i class="fa fa-filter" aria-hidden="true" v-if="orderBy === 'asc'"></i>
         </a>
         <a class="dropdown-item" href="#" @click="$emit('filterorder', 'desc')">
           Descending
-          <i class="fa fa-shopping-cart" aria-hidden="true" v-if="orderBy === 'desc'"></i>
+          <i class="fa fa-filter" aria-hidden="true" v-if="orderBy === 'desc'"></i>
         </a>
       </div>
     </div>
@@ -58,6 +58,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "@/assets/outerform.scss";
+@import "@/assets/keyframes.scss";
 </style>

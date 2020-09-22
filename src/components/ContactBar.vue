@@ -105,8 +105,9 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 @import "@/assets/variables.scss";
+@import "@/assets/keyframes.scss";
 nav {
   ul {
     list-style: none;
@@ -160,7 +161,7 @@ nav {
   }
 }
 
-small{
+small {
   font-size: 10px;
 }
 

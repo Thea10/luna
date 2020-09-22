@@ -24,22 +24,28 @@
           </div>
         </div>
 
-        <button class="btn shop-btn" style="margin-top: 0.5rem;">START SHOPPING</button>
+        <router-link to="/buy" class="btn shop-btn" style="margin-top: 0.5rem;">  START SHOPPING</router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+
 
 export default {
-  name: "Home"
+  name: "Home",
+ 
+
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "@/assets/variables.scss";
+@import "@/assets/keyframes.scss";
+
+
+
 
 .container {
   .carousel {
@@ -69,6 +75,9 @@ export default {
     .carousel-item {
       position: unset;
       height: 400px;
+       animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s both;
+      -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s both;
+
 
       // padding: 4rem;
 
@@ -97,7 +106,7 @@ export default {
 
           @include xsm-max {
             width: 150px;
-            height: 150px;
+            height: 150px !important;
           }
         }
       }
@@ -130,6 +139,7 @@ export default {
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        margin-top: 2rem;
 
         @include xsm-max {
           font-size: 24px;
@@ -147,7 +157,7 @@ export default {
 
     @include xsm-max {
       .shop-btn {
-        margin-top: 4.5rem;
+        margin-top: 4.5rem !important;
       }
     }
   }

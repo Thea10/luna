@@ -1,71 +1,100 @@
 <template>
-  <div class="container">
+  <div class="container cart">
     <h2 class="mb-5" style="margin-top: -23px">MADE BY LUNA</h2>
 
     <section class="product-body">
       <div class="d-flex flex-wrap justify-content-around align-items-center">
-        <h3 class="mb-2">Items</h3>
+        <h3 class="mb-2">Your order</h3>
       </div>
 
-      <cart-items :items="items" />
+      <div v-if="cartLength !== 0 && !checkoutfail && !checkoutsuccess  " class="row flex-column">
+        <cart-items :items="items" :length="cartLength" :totalprice ="cartPrice" />
+
+        <button class="btn checkout-btn col-4 mx-auto mb-3" @click="checkoutCart">
+           <span class="loader" v-if="loading">
+            <img src="@/assets/btnloader2.svg" alt="loading" height="20px" width="20px" />
+          </span>
+          <span v-else>   Checkout
+          <i class="fa fa-shopping-bag" aria-hidden="true"></i></span>
+       
+        </button>
+      </div>
+
+      <div v-if="cartLength === 0" class="bg-white p-4 empty">
+        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+
+        <div class="empty-text mt-3">
+          <h6>Your cart is empty,</h6>
+          <h6>
+            Shop here:
+            <router-link to="/buy" class="btn shop-btn">Store</router-link>
+          </h6>
+        </div>
+      </div>
+
+      <div v-if="checkoutsuccess && cartLength !== 0" class="bg-white p-4 checkout">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        <small>
+          Order sucessfull!
+          <br />A delivery agent will contact you in x hours
+          <br />Thank you
+        </small>
+      </div>
+      <div v-if="checkoutfail && cartLength !== 0" class="bg-white p-4 checkout checkout-fail">
+        <i class="fa fa-times" aria-hidden="true"></i>
+        <small>
+          Something went wrong
+          <br />Please try again
+        </small>
+      </div>
     </section>
   </div>
 </template>
 
 <script>
-import CartItems from "../components/CartItems";
+import { mapGetters, mapActions } from "vuex";
+import CartItems from "../components/Cart/CartItems";
 export default {
   name: "Cart",
+   data() {
+    return {
+      checkoutsuccess: false,
+      checkoutfail: false,
+      loading: false
+    };
+  },
   components: {
     CartItems
   },
-  data() {
-    return {
-      items: [
-        {
-          id: 1,
-          name: "Honey",
-          price: 1500,
-          size: 500,
-          img: require("../assets/honey-500.jpeg")
-        },
-        {
-          id: 2,
-          name: "Coconut Oil",
-          price: 1200,
-          size: 150,
-          img: require("../assets/coco-150.jpeg")
-        },
-        {
-          id: 3,
-          name: "Honey",
-          price: 1200,
-          size: 300,
-          img: require("../assets/honey-300.jpg")
-        },
-        {
-          id: 4,
-          name: "Coconut Oil",
-          price: 500,
-          size: 50,
-          img: require("../assets/coco-50.jpeg")
-        },
-        {
-          id: 5,
-          name: "Coconut Oil",
-          price: 1700,
-          size: "50 150",
-          img: require("../assets/coco15050.jpeg")
-        }
-      ]
-    };
+ 
+  methods:{
+    ...mapActions({
+      checkout: "CHECK_OUT"
+    }),
+   async checkoutCart() { 
+      this.loading = true;
+      await this.checkout;
+      this.checkoutsuccess = !this.checkoutsuccess;
+      this.loading = false;
+     },
+  },
+  computed: {
+    ...mapGetters({
+      items: "getCartItems",
+      cartLength: "getCartCount",
+      cartPrice: "getCartTotal"
+    }),
+
   }
 };
 </script>
 
 <style lang="scss" >
 @import "@/assets/variables.scss";
-.container {
+@import "@/assets/keyframes.scss";
+
+
+.cart {
   color: $darkText;
   h2 {
     font-size: 20px;
@@ -80,7 +109,7 @@ export default {
     margin: 0;
     width: unset;
     @include md-min {
-      font-size: 23px;
+      font-size: 18px;
     }
   }
 
@@ -103,26 +132,28 @@ export default {
 
   i {
     color: $inactive;
-    font-size: 11px;
+    //  font-size: 11px;
     cursor: pointer;
     -webkit-text-stroke-width: medium;
     -webkit-text-fill-color: white;
     transition: all 0.5s;
-
-    &:hover,
-    &.favorited {
-      color: $primary;
-      -webkit-text-fill-color: $primary;
-    }
   }
 
   .product-body {
+    .item,
+    .empty,
+    .checkout, .item-text {
+      animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 1s both;
+      -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 1s
+        both;
+    }
     .row {
       .item {
         background: #ffffff;
         box-shadow: 1px 0px 0px 2px rgba(0, 0, 0, 0.13);
         border-radius: 5px;
         transition: box-shadow 0.6s;
+        height: auto;
 
         small,
         i {
@@ -131,6 +162,71 @@ export default {
 
         &:hover {
           box-shadow: none;
+        }
+      }
+
+      .checkout-btn {
+        background: $darkText;
+
+
+        &:hover {
+          background: $price;
+          font-weight: 600;
+
+          .fa-shopping-bag:before{
+            content: "\f061" ;
+          }
+        }
+      }
+    }
+
+    .checkout-btn,
+    .shop-btn {
+      border-radius: 0px 0px 15px 15px;
+
+       &:hover {
+          border-radius: 0;
+        }
+    }
+
+    .empty,
+    .checkout {
+      line-height: 3;
+
+      i {
+        -webkit-text-stroke-width: thin;
+      }
+
+      @include sm-min {
+        width: 75%;
+        margin: auto;
+      }
+    }
+
+    .empty {
+      i {
+        font-size: 4rem;
+      }
+
+      h6,
+      i {
+        margin-bottom: 1rem;
+      }
+    }
+
+    .checkout {
+      i {
+        border: 1px solid #0fcb0f;
+        color: #0fcb0f;
+        border-radius: 50%;
+        padding: 1.5rem;
+        font-size: 5rem;
+      }
+
+      &.checkout-fail {
+        i {
+          border: none;
+          color: #ff1100;
         }
       }
     }

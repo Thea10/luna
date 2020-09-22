@@ -23,7 +23,10 @@
         </ValidationProvider>
 
         <div class="form-group mb-4">
-          <button class="btn text-center">Send me a password reset link</button>
+          <button
+            class="btn text-center"
+            style="    padding: .375rem .75rem;"
+          >Send me a password reset link</button>
         </div>
       </form>
     </ValidationObserver>

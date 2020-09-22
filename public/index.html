@@ -27,8 +27,8 @@
     <script>
         $(document).ready(function() {
                 togglerAnimation();
-                // let date = new Date().getFullYear();
-                // document.getElementById('copy').textContent = date;
+                closeNav();
+              
             }
 
 
@@ -38,6 +38,14 @@
             $('.collapsebtn1').on('click', function() {
                 $('.animated-icon1').toggleClass('open');
             });
+        };
+
+        function closeNav() {
+            $('.navbar-collapse a').click(function(){
+            $(".navbar-collapse").collapse('hide');
+        });
+
+        togglerAnimation();
         };
     </script>
 </body>
