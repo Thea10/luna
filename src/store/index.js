@@ -4,7 +4,8 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-const store = new Vuex.Store({
+let productstore = {
+  namespaced: true,
   state: {
     productitems: [
       {
@@ -14,7 +15,7 @@ const store = new Vuex.Store({
         size: 500,
         img: require("../assets/honey-500.jpeg"),
         wished: true,
-        count: 1
+        count: 1,
       },
       {
         id: 2,
@@ -23,7 +24,7 @@ const store = new Vuex.Store({
         size: 150,
         img: require("../assets/coco-150.jpeg"),
         wished: false,
-        count: 1
+        count: 1,
       },
       {
         id: 3,
@@ -32,7 +33,7 @@ const store = new Vuex.Store({
         size: 300,
         img: require("../assets/honey-300.jpg"),
         wished: false,
-        count: 1
+        count: 1,
       },
       {
         id: 4,
@@ -41,7 +42,7 @@ const store = new Vuex.Store({
         size: 50,
         img: require("../assets/coco-50.jpeg"),
         wished: false,
-        count: 1
+        count: 1,
       },
       {
         id: 5,
@@ -50,18 +51,14 @@ const store = new Vuex.Store({
         size: "50 150",
         img: require("../assets/coco15050.jpeg"),
         wished: false,
-        count: 1
+        count: 1,
       },
     ],
-    cartitems: [
-      
-  
-    ],
+    cartitems: [],
     cartcount: 0,
     carttotal: 0,
   },
   getters: {
-    getCount: (state) => state.count,
     getProducts: (state) => state.productitems,
     getCartItems: (state) => state.cartitems,
     getCartCount: (state) => {
@@ -83,19 +80,17 @@ const store = new Vuex.Store({
   mutations: {
     UPDATE_CART(state, payload) {
       let index = state.cartitems.findIndex((item) => item.id == payload.id);
-   
 
-     
-      if ( index >= 0) {
+      if (index >= 0) {
         state.cartitems[index].count += 1;
       } else {
-        payload.id = random(state.cartitems.length  + 1, 900);
-     
+        payload.id = random(state.cartitems.length + 1, 900);
+
         state.cartitems = [...state.cartitems, payload];
-       // console.log(state.cartitems);
+        // console.log(state.cartitems);
       }
 
-     // console.log(state.cartitems);
+      // console.log(state.cartitems);
     },
 
     REMOVE_ITEM(state, payload) {
@@ -109,24 +104,22 @@ const store = new Vuex.Store({
         state.cartitems[index].count -= 1;
       }
 
-     // console.log(state.cartitems[index]);
+      // console.log(state.cartitems[index]);
     },
 
-    WISH_ACTION(state, payload){
+    WISH_ACTION(state, payload) {
       let index = state.productitems.findIndex((item) => item.id == payload.id);
-     
+
       if (state.productitems[index].wished == true) {
         state.productitems[index].wished = false;
       } else {
-        state.productitems[index].wished = true
+        state.productitems[index].wished = true;
       }
-
     },
 
-    CHECKOUT_CART(state){
+    CHECKOUT_CART(state) {
       state.cartitems = [];
-
-    }
+    },
   },
   // perform asynchronous operations inside an action; remember this when you have to make api calls
   actions: {
@@ -135,30 +128,42 @@ const store = new Vuex.Store({
     },
 
     ADD_TO_CART({ commit }, item) {
-     // console.log(item);
+      // console.log(item);
       setTimeout(() => {
-        commit("UPDATE_CART", item); 
+        commit("UPDATE_CART", item);
       }, 3000);
-     
     },
 
-    WISH_ITEM({commit}, item){
-     // console.log(item);
+    WISH_ITEM({ commit }, item) {
+      // console.log(item);
       setTimeout(() => {
         commit("WISH_ACTION", item);
       }, 3000);
-    
     },
 
-    CHECK_OUT({commit}){
+    CHECK_OUT({ commit }) {
       //console.log(item);
       setTimeout(() => {
         commit("CHECKOUT_CART");
-      }, 3000)
-      
-    }
+      }, 3000);
+    },
   },
   modules: {},
+};
+
+//module for user will contain submodules login, signup and porfile
+
+
+let store = new Vuex.Store({
+  modules: {
+    items: productstore,
+  },
+  state: {},
+  mutations: {},
+  getters: {},
+  actions: {},
 });
+
+
 
 export default store;

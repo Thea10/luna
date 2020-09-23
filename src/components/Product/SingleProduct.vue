@@ -38,7 +38,7 @@
         ></i>
       </div>
     </div>
-    <banner v-if="showbanner" :status="status" :message="message"></banner>
+    <banner v-if="showbanner" :status="status"> {{message}}</banner>
   </div>
 </template>
 
@@ -62,33 +62,36 @@ export default {
   },
   methods: {
     ...mapActions({
-      addItemToCart: "ADD_TO_CART",
-      wishAction: "WISH_ITEM"
+      addItemToCart: "items/ADD_TO_CART",
+      wishAction: "items/WISH_ITEM"
     }),
     async AddToCart(item) {
       this.loading = true;
-      await this.addItemToCart(item);
+       this.addItemToCart(item);
 
       setTimeout(() => {
         this.loading = false;
         this.message = `Item ${item.name} added`;
         this.status = "success";
-      }, 2000);
-      this.showbanner = true;
+         this.showbanner = true;
+      }, 1000);
+     
       setTimeout(() => {
         this.showbanner = false;
       }, 5000);
     },
     async wish(item) {
       this.loading = true;
-      await this.wishAction(item);
+       this.wishAction(item);
       setTimeout(() => {
         this.loading = false;
-        this.message ="Success"
+        item.wished == true ?  this.message ="Removed from wishlist" : this.message ="Added to wishlist";
+       
         this.status = "success";
-      }, 2000);
+          this.showbanner = true;
+      }, 1000);
 
-      this.showbanner = true;
+    
 
       setTimeout(() => {
         this.showbanner = false;

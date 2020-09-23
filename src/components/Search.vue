@@ -15,24 +15,24 @@
         class="btn dropdown-toggle"
         data-toggle="dropdown"
         aria-haspopup="true"
-        aria-expanded="false"
+        aria-expanded="false" 
       > <i class="fa fa-filter" aria-hidden="true"></i> </button>
       <div class="dropdown-menu" aria-labelledby="dropdownId">
-        <a class="dropdown-item" href="#" @click="$emit('filteritem', 'price')">
-          Price
+        <a :class="{'dropdown-item': true, 'selected': filterBy === 'price'}" href="#" @click="$emit('filteritem', 'price')">
+          Price 
           <i class="fa fa-filter" aria-hidden="true" v-if="filterBy === 'price' "></i>
         </a>
-        <a class="dropdown-item" href="#" @click="$emit('filteritem', 'price')">
+        <a :class="{'dropdown-item': true, 'selected': filterBy === 'size'}" href="#" @click="$emit('filteritem', 'price')">
           Size
           <i class="fa fa-filter" aria-hidden="true" v-if="filterBy === 'size'"></i>
         </a>
 
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#" @click="$emit('filterorder', 'asc')">
+        <a :class="{'dropdown-item': true, 'selected': orderBy === 'asc'}" href="#" @click="$emit('filterorder', 'asc')">
           Ascending
           <i class="fa fa-filter" aria-hidden="true" v-if="orderBy === 'asc'"></i>
         </a>
-        <a class="dropdown-item" href="#" @click="$emit('filterorder', 'desc')">
+        <a :class="{'dropdown-item': true, 'selected': orderBy === 'desc'}" href="#" @click="$emit('filterorder', 'desc')">
           Descending
           <i class="fa fa-filter" aria-hidden="true" v-if="orderBy === 'desc'"></i>
         </a>

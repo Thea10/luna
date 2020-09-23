@@ -7,10 +7,10 @@
         <h3 class="mb-2">Your order</h3>
       </div>
 
-      <div v-if="cartLength !== 0 && !checkoutfail && !checkoutsuccess  " class="row flex-column">
+      <div v-if="cartLength !== 0 && !checkoutfail && !checkoutsuccess " class="row flex-column">
         <cart-items :items="items" :length="cartLength" :totalprice ="cartPrice" />
 
-        <button class="btn checkout-btn col-4 mx-auto mb-3" @click="checkoutCart">
+        <button class="btn checkout-btn col-4 mx-auto mb-3 item-text" @click="checkoutCart">
            <span class="loader" v-if="loading">
             <img src="@/assets/btnloader2.svg" alt="loading" height="20px" width="20px" />
           </span>
@@ -69,7 +69,7 @@ export default {
  
   methods:{
     ...mapActions({
-      checkout: "CHECK_OUT"
+      checkout: "items/CHECK_OUT"
     }),
    async checkoutCart() { 
       this.loading = true;
@@ -80,9 +80,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      items: "getCartItems",
-      cartLength: "getCartCount",
-      cartPrice: "getCartTotal"
+      items: "items/getCartItems",
+      cartLength: "items/getCartCount",
+      cartPrice: "items/getCartTotal"
     }),
 
   }

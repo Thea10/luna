@@ -1,6 +1,7 @@
 <template>
     <div :class="{'alert item-text ': true, 'alert-success': status == 'success', 'alert-danger': status == 'fail', 'alert-warning': status == 'error'}">
-      {{message}}
+    
+      <slot></slot>
         
     </div>
 
@@ -9,7 +10,7 @@
 <script>
 export default {
     name: "Banner",
-    props: ["status", "message"]
+    props: ["status"]
 }
 </script>
 <style lang="scss">

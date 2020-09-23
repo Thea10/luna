@@ -12,11 +12,11 @@
     </div>
 
     <div class="actions col-3 d-flex flex-wrap align-items-center justify-content-between">
-      <i class="fa fa-minus" aria-hidden="true" @click="removeOne(item)"></i>
+      <i class="fa fa-minus" aria-hidden="true" @click="removeOne(item)" title="Add"></i>
       <small class="item-text">{{item.count}}</small>
-      <i class="fa fa-plus" aria-hidden="true" @click="addOne(item)"></i>
+      <i class="fa fa-plus" aria-hidden="true" @click="addOne(item)" title="Add" ></i>
     </div>
-    <banner v-if="showbanner" :status="status" :message="message"></banner>
+    <banner v-if="showbanner" :status="status" >{{message}}</banner>
   </div>
 </template>
 
@@ -39,8 +39,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      removeItem: "REMOVE_FROM_CART",
-      addItem: "ADD_TO_CART"
+      removeItem: "items/REMOVE_FROM_CART",
+      addItem: "items/ADD_TO_CART"
     }),
 
     async removeOne(item) {

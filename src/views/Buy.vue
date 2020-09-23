@@ -14,13 +14,13 @@
         />
       </div>
 
-      <product-list  :products="filterProducts"  />
+      <product-list :products="filterProducts" />
     </section>
   </div>
 </template>
 
 <script>
- import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 import Search from "../components/Search";
 import ProductList from "../components/Product/ProductList";
 import _ from "lodash";
@@ -30,7 +30,7 @@ export default {
     return {
       searchField: "",
       filterKey: "size",
-      orderKey: "desc",
+      orderKey: "desc"
     };
   },
   components: {
@@ -39,7 +39,6 @@ export default {
   },
 
   methods: {
-  
     SearchProducts: function(searchtext) {
       this.searchField = searchtext;
     },
@@ -51,7 +50,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({products: "getProducts"}),
+    ...mapGetters({ products: "items/getProducts" }),
     searchedProducts() {
       return this.products.filter(product => {
         return product.name.toLowerCase().match(this.searchField.toLowerCase());
@@ -74,8 +73,6 @@ export default {
 <style lang="scss">
 @import "@/assets/variables.scss";
 @import "@/assets/keyframes.scss";
-
-
 
 .buy {
   color: $darkText;
@@ -119,16 +116,18 @@ export default {
     -webkit-text-stroke-width: medium;
     -webkit-text-fill-color: white;
     transition: all 0.5s;
-        margin-top: 0.2rem;
+    margin-top: 0.2rem;
 
-    &:hover, &.focus,
+    &:hover,
+    &.focus,
     &.favorited {
-       color: $primary;
+      color: $primary;
       -webkit-text-fill-color: $primary;
     }
 
-    &.favorited:hover, &.favorited:focus{
-         -webkit-text-fill-color: white;
+    &.favorited:hover,
+    &.favorited:focus {
+      -webkit-text-fill-color: white;
     }
   }
 
@@ -141,21 +140,25 @@ export default {
       top: 30px !important;
       left: -46px !important;
 
-   .dropdown-item{
-     font-size: 0.8rem;
-
-    &:focus, &:hover {
-        color: $primary;
-        text-decoration: none;
-        background-color: #f8f9fa;
-        
-
-        i {
+      .dropdown-item {
+        font-size: 0.7rem;
+        font-weight: 100;
+        transition: all 0.5s;
+        margin-bottom: 0.2rem;
+        &:focus,
+        &:hover, &.selected {
           color: $primary;
+          text-decoration: none;
+          background-color: transparent;
+          font-weight: 100;
+          border-left: 2px solid $primary;
+           border-right: 2px solid $primary;
+
+          i {
+            color: $primary;
+          }
         }
       }
-   }
-     
     }
 
     .row {
@@ -198,8 +201,6 @@ export default {
             }
           }
         }
-
-     
 
         @include xsm-max {
           height: 325px;

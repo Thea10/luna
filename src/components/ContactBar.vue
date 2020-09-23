@@ -26,7 +26,7 @@
                     :class="{'form-control mb-1': true, 'error': errors[0]}"
                     :state="errors[0] ? false: (valid ? true : null)"
                   />
-                  <span class="small text-danger">{{errors[0]}}</span>
+                  <span style="font-size: 70%;" class="small text-danger">{{errors[0]}}</span>
                 </div>
               </ValidationProvider>
 
@@ -41,7 +41,7 @@
                     :state="errors[0] ? false : (valid ? true : null)"
                   />
 
-                  <span class="small text-danger">{{errors[0]}}</span>
+                  <span style="font-size: 70%;" class="small text-danger">{{errors[0]}}</span>
                 </div>
               </ValidationProvider>
 
@@ -55,7 +55,7 @@
                     :state="errors[0] ? false : (valid ? true : null)"
                   />
 
-                  <span class="small text-danger">{{errors[0]}}</span>
+                  <span style="font-size: 70%;" class="small text-danger">{{errors[0]}}</span>
                 </div>
               </ValidationProvider>
 
@@ -71,7 +71,7 @@
                     :state="errors[0] ? false : (valid ? true : null)"
                   ></textarea>
 
-                  <span class="small text-danger">{{errors[0]}}</span>
+                  <span style="font-size: 70%;" class="small text-danger">{{errors[0]}}</span>
                 </div>
               </ValidationProvider>
 
