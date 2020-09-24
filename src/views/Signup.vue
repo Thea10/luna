@@ -7,7 +7,7 @@
     <ValidationObserver ref="observer">
       <form
         slot-scope="{validate}"
-        @submit.prevent="validate().then(registerUser)"
+        @submit.prevent="validate().then(registerUser({firstname, lastname, email, phone, password}))"
         class="form-holder p-4 p-md-5"
       >
         <div class="form-group form-row justify-content-between mb-0">
@@ -16,7 +16,7 @@
               <input
                 type="text"
                 placeholder="First Name"
-                v-model="form.firstname"
+                v-model="firstname"
                 :class="{'form-control mb-2  border-top-0 border-right-0 border-left-0 bg-transparent': true, 'error': errors[0]}"
                 :state="errors[0] ? false : (valid ? true : null)"
               />
@@ -30,7 +30,7 @@
               <input
                 type="text"
                 placeholder="Last Name"
-                v-model="form.lastname"
+                v-model="lastname"
                 :class="{'form-control mb-2 border-top-0 border-right-0 border-left-0 bg-transparent': true, 'error': errors[0] }"
                 :state="errors[0] ? false : (valid ? true : null)"
               />
@@ -46,7 +46,7 @@
               type="email"
               placeholder="Email Address"
               pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-              v-model="form.email"
+              v-model="email"
               :class="{'form-control  mb-1 border-top-0 border-right-0 border-left-0 bg-transparent': true, 'error': errors[0] }"
               :state="errors[0] ? false : (valid ? true : null)"
             />
@@ -55,12 +55,12 @@
           </div>
         </ValidationProvider>
 
-        <ValidationProvider rules="required" name="Phone">
+        <ValidationProvider rules="required|min:5" name="Phone">
           <div slot-scope="{ valid, errors }" class="form-group mb-2 md-mb-3">
             <input
               type="tel"
               placeholder="Phone"
-              v-model="form.phone"
+              v-model="phone"
               :class="{'form-control mb-1 border-top-0 border-right-0 border-left-0 bg-transparent': true, 'error':errors[0] }"
               :state="errors[0] ? false : (valid ? true : null)"
             />
@@ -75,7 +75,7 @@
               <input
                 :type="passwordFieldType"
                 placeholder="Password"
-                v-model="form.password"
+                v-model="password"
                 class="form-control border-0 h-100 bg-transparent"
                 :state="errors[0] ? false : (valid ? true : null)"
               />
@@ -91,8 +91,8 @@
             </div>
 
             <span class="small text-danger">
-              <span class="text-dark">Must be at least four characters</span>
-              <br />
+              <!-- <span class="text-dark">Must be at least four characters</span>
+              <br /> -->
               {{errors[0]}}
             </span>
           </div>
@@ -104,7 +104,7 @@
               <input
                 :type="passwordFieldType"
                 placeholder=" Confirm Password"
-                v-model="form.confirmpassword"
+                v-model="confirmpassword"
                 class="form-control border-0 h-100 bg-transparent"
                 :state="errors[0] ? false : (valid ? true : null)"
               />
@@ -122,7 +122,16 @@
         </ValidationProvider>
 
         <div class="form-group mb-2">
-          <button class="btn">SIGN UP</button>
+          <button
+            :disabled="!firstname || !lastname || !email || !phone || !password || confirmpassword != password"
+            class="btn"
+          >
+            <span class="loader" v-if="loading">
+              <img src="@/assets/btnloader2.svg" alt="loading" height="20px" width="20px" />
+            </span>
+
+            <span v-else>SIGN UP</span>
+          </button>
         </div>
 
         <div class="d-flex flex-wrap align-items-center social">
@@ -147,30 +156,98 @@
 </template>
 
 <script>
+import { mapMutations, mapGetters, mapActions } from "vuex";
+
 export default {
   name: "Signup",
   data() {
     return {
-      form: {
-        firstname: null,
-        lastname: null,
-        email: null,
-        phone: null,
-        password: null,
-        confirmpassword: null
-      },
+      confirmpassword: "",
       passwordFieldType: "password",
-      showpassword: false
+      showpassword: false,
+      loading: false,
+      passworderror: false
     };
   },
+  computed: {
+    firstname: {
+      get() {
+        return this.getFname();
+      },
+
+      set(value) {
+        this.setfirst(value);
+      }
+    },
+    lastname: {
+      get() {
+        return this.getLname();
+      },
+
+      set(value) {
+        this.setlast(value);
+      }
+    },
+    phone: {
+      get() {
+        return this.getPhone();
+      },
+
+      set(value) {
+        this.setphone(value);
+      }
+    },
+    email: {
+      get() {
+        return this.getEmail();
+      },
+
+      set(value) {
+        this.setmail(value);
+      }
+    },
+    password: {
+      get() {
+        return this.getPassword();
+      },
+
+      set(value) {
+        this.setpassword(value);
+      }
+    }
+  },
   methods: {
+    ...mapMutations("signup", {
+      setfirst: "SET_FNAME",
+      setlast: "SET_LNAME",
+      setmail: "SET_MAIL",
+      setphone: "SET_PHONE",
+      setpassword: "SET_PASSWORD"
+    }),
+    ...mapGetters("signup",{
+      getFname: "getFirstName",
+      getLname: "getLastName",
+      getPhone: "getPhone",
+      getEmail: "getEmail",
+      getPassword: "getPassword"
+    }),
+
+    ...mapActions("signup",{
+      signup: "SIGN_UP"
+    }),
     showPassword() {
       this.passwordFieldType =
         this.passwordFieldType === "password" ? "text" : "password";
       this.showpassword = !this.showpassword;
     },
-    registerUser() {
-      console.log(this.form);
+    registerUser(obj) {
+       this.loading = true;
+       this.signup(obj);
+
+      setTimeout(() => {
+         this.loading = false;
+      }, 1000);
+      this.confirmpassword = ""
     }
   }
 };

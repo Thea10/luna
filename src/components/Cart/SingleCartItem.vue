@@ -61,7 +61,7 @@ export default {
 
       setTimeout(() => {
         this.showbanner = false;
-      }, 3000);
+      }, 5000);
     }
   }
 };

@@ -153,17 +153,109 @@ let productstore = {
 
 //module for user will contain submodules login, signup and porfile
 
+let loginstore = {
+  namespaced: true,
+  state: {
+    email: "",
+    password: "",
+  },
+  getters: {
+    getEmail: (state) => state.email,
+    getPassword: (state) => state.password,
+  },
+  mutations: {
+    SET_MAIL(state, payload) {
+      state.email = payload;
+    },
+
+    SET_PASSWORD(state, payload) {
+      state.password = payload;
+    },
+
+    CLEAR_DATA(state) {
+      state.email = "";
+      state.password = "";
+    },
+  },
+  actions: {
+    LOG_IN({ commit }, item) {
+      sessionStorage.setItem("logindata", JSON.stringify({ ...item }));
+      setTimeout(() => {
+        commit("CLEAR_DATA");
+      }, 3000);
+    },
+
+    RESET_PASSWORD({commit}, item){
+      sessionStorage.setItem("resetdata", JSON.stringify({ ...item }));
+      setTimeout(() => {
+        commit("CLEAR_DATA");
+      }, 3000);
+    }
+  },
+};
+
+let signupstore = {
+  namespaced: true,
+  state: {
+    firstname: "",
+    lastname: "",
+    email: "",
+    phone: "",
+    password: "",
+  },
+  getters: {
+    getFirstName: (state) => state.firstname,
+    getLastName: (state) => state.lastname,
+    getEmail: (state) => state.email,
+    getPhone: (state) => state.phone,
+    getPassword: (state) => state.password,
+  },
+  mutations: {
+    SET_FNAME(state, payload) {
+      state.firstname = payload;
+    },
+    SET_LNAME(state, payload) {
+      state.lastname = payload;
+    },
+    SET_MAIL(state, payload) {
+      state.email = payload;
+    },
+    SET_PHONE(state, payload) {
+      state.phone = payload;
+    },
+    SET_PASSWORD(state, payload) {
+      state.password = payload;
+    },
+
+    CLEAR_DATA(state) {
+      state.firstname = "";
+      state.lastname = " ";
+      state.phone = "";
+      state.email = "";
+      state.password = "";
+    },
+  },
+  actions: {
+    SIGN_UP({ commit }, item) {
+      sessionStorage.setItem("signupdata", JSON.stringify({ ...item }));
+      setTimeout(() => {
+        commit("CLEAR_DATA");
+      }, 3000);
+    },
+  },
+};
 
 let store = new Vuex.Store({
   modules: {
     items: productstore,
+    login: loginstore,
+    signup: signupstore
   },
   state: {},
   mutations: {},
   getters: {},
   actions: {},
 });
-
 
 
 export default store;

@@ -22,7 +22,7 @@
           Price 
           <i class="fa fa-filter" aria-hidden="true" v-if="filterBy === 'price' "></i>
         </a>
-        <a :class="{'dropdown-item': true, 'selected': filterBy === 'size'}" href="#" @click="$emit('filteritem', 'price')">
+        <a :class="{'dropdown-item': true, 'selected': filterBy === 'size'}" href="#" @click="$emit('filteritem', 'size')">
           Size
           <i class="fa fa-filter" aria-hidden="true" v-if="filterBy === 'size'"></i>
         </a>

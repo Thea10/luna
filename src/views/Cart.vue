@@ -143,8 +143,8 @@ export default {
     .item,
     .empty,
     .checkout, .item-text {
-      animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 1s both;
-      -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 1s
+      animation: fade-in 1s ease-in-out 1s both;
+      -webkit-animation: fade-in 1s ease-in-out 1s
         both;
     }
     .row {
@@ -152,7 +152,7 @@ export default {
         background: #ffffff;
         box-shadow: 1px 0px 0px 2px rgba(0, 0, 0, 0.13);
         border-radius: 5px;
-        transition: box-shadow 0.6s;
+        transition: all 1s;
         height: auto;
 
         small,
