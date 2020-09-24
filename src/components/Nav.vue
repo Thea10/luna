@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav navbar-expand-md navbar-light bg-white d-flex flex-column h-100">
+  <nav class="nav navbar-expand-md navbar-light d-flex flex-column h-100 main-nav">
     <div class="d-flex justify-content-md-center">
       <button
         class="navbar-toggler collapsebtn1 d-lg-none"
@@ -74,6 +74,10 @@ export default {
 @import "@/assets/keyframes.scss";
 
 .nav {
+  &.main-nav {
+    background-color: rgba(215, 168, 30, 0.59) !important;
+        border-radius: 50px 0;
+  }
   // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
   .collapsebtn1 {
     padding: 5px;
@@ -86,6 +90,7 @@ export default {
       height: 20px;
       position: relative;
       margin: 0px;
+          margin-left: 20px;
       -webkit-transform: rotate(0deg);
       transform: rotate(0deg);
       -webkit-transition: 0.5s ease-in-out;
@@ -104,7 +109,7 @@ export default {
         transition: 0.5s ease-in-out;
         height: 2px;
         width: 100%;
-        background: $primary;
+        background: #593c0c;
         transform-origin: left center;
       }
 
@@ -153,6 +158,7 @@ export default {
 
     img {
       height: 100px;
+      mix-blend-mode: multiply;
 
       @include md-min {
         height: 160px;
@@ -176,11 +182,11 @@ export default {
         .far {
           border-radius: 50%;
           padding: 1rem;
-          border: 1px solid $inactive;
+       //   border: 1px solid $inactive;
           color: $inactive;
           transition: all 0.8s;
           -webkit-text-stroke: medium;
-          -webkit-text-fill-color: white;
+          -webkit-text-fill-color: transparent;
         }
         h6 {
           width: 50px;
@@ -194,14 +200,14 @@ export default {
           .fas,
           .far {
             border: none;
-            background: $primary;
-            color: $white;
+            background: $white;
+            color: $primary;
             -webkit-text-stroke: medium;
             -webkit-text-fill-color: #ffffff00;
           }
 
           h6 {
-            color: $primary;
+            color: $white;
           }
         }
       }
@@ -255,30 +261,29 @@ export default {
         position: absolute;
       }
 
-      &:hover{
-          &::before,
+      &:hover {
+        &::before,
         &::after {
           -webkit-animation: slowslosh 8s linear infinite;
           animation: slowslosh 8s linear infinite;
         }
-
       }
     }
-
-   
   }
 
   @include md-max {
     .navbar-nav {
-      position: absolute;
-      top: 14%;
-      left: 2%;
-      z-index: 1030;
       //background: #dba52152;
       //   background: #dba521d4;
-      background: $white;
+
+      position: absolute;
+      top: 14%;
+      left: 5%;
+      right: 0;
+      z-index: 1030;
+      background: #ffffff;
       width: 90%;
-      border-radius: 10px;
+      border-radius: 0 0 10px 10px;
 
       .nav-item {
         margin: 0.2rem;
@@ -302,17 +307,17 @@ export default {
           }
           &:hover,
           &.router-link-exact-active.router-link-active {
-            color: $primary;
+            color: #ba7f1c;
             .fa,
             .fas,
             .far {
               border: none;
-              background: $primary;
+              background: #ba7f1c;
               color: $white;
             }
 
             h6 {
-              color: $primary;
+              color: #ba7f1c;
             }
           }
         }
@@ -344,10 +349,8 @@ export default {
   }
 
   @include md-min {
-    position: absolute;
+    position: fixed;
     width: 16%;
   }
 }
-
-
 </style>

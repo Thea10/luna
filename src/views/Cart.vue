@@ -1,6 +1,6 @@
 <template>
   <div class="container cart">
-    <h2 class="mb-5" style="margin-top: -23px">MADE BY LUNA</h2>
+    <h2 class="mb-5" style="margin-top: -10px">MADE BY LUNA</h2>
 
     <section class="product-body">
       <div class="d-flex flex-wrap justify-content-around align-items-center">

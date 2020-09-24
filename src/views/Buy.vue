@@ -1,10 +1,10 @@
 <template>
   <div class="container buy">
-    <h2 class="mb-5" style="margin-top: -23px">MADE BY LUNA</h2>
+    <h2 class="mb-5" style="margin-top: -10px">MADE BY LUNA</h2>
 
     <section class="product-body">
       <div class="d-flex flex-wrap justify-content-around align-items-center">
-        <h3 class="mb-2">PRODUCTS</h3>
+        <h3 class="mb-md-2">PRODUCTS</h3>
         <search
           @searchproducts="SearchProducts"
           @filteritem="filterBy"

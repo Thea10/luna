@@ -121,12 +121,12 @@ export default {
 
         @include md-min {
           width: 65%;
-          margin: 3rem 9rem;
+          margin: 3rem 9rem 1rem;
         }
 
         @include lg-min {
           width: 90%;
-          margin: 3rem 8rem;
+          margin: 3rem 8rem  1rem;
         }
       }
 
@@ -151,7 +151,7 @@ export default {
       }
 
       @include md-min {
-        margin: 3rem auto;
+        margin: 3rem auto 1.5rem;
       }
     }
 
