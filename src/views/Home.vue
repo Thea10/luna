@@ -2,41 +2,51 @@
 <template>
   <div class="container">
     <div class="home">
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <div
+        id="carouselExampleIndicators"
+        class="carousel slide"
+        data-ride="carousel"
+      >
         <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li
+            data-target="#carouselExampleIndicators"
+            data-slide-to="0"
+            class="active"
+          ></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="img">
-              <img src="@/assets/one.jpeg" alt="item" />
               <img src="@/assets/two.jpeg" alt="item" />
-              <img src="@/assets/three.jpeg" alt="item" />
+              <img src="@/assets/honey-300.jpg" alt="item" />
+              <img src="@/assets/coco-50.jpeg" alt="item" />
             </div>
           </div>
           <div class="carousel-item two">
-            <h3>Your One Stop Shop For Premium Honey, Shea Butter and Coconut Oil</h3>
+            <h3>
+              Your One Stop Shop For Premium Honey, Shea Butter and Coconut Oil
+            </h3>
           </div>
           <div class="carousel-item three">
             <h3>START SHOPPING</h3>
           </div>
         </div>
 
-        <router-link to="/buy" class="btn shop-btn" style="margin-top: 0.5rem;">  START SHOPPING</router-link>
+        <router-link to="/buy" class="btn shop-btn" style="margin-top: 0.5rem;">
+          START SHOPPING</router-link
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
-
 export default {
   name: "Home",
  
-
+  
 };
 </script>
 
@@ -44,16 +54,13 @@ export default {
 @import "@/assets/variables.scss";
 @import "@/assets/keyframes.scss";
 
-
-
-
 .container {
   .carousel {
     .carousel-inner {
       overflow: unset;
     }
     .carousel-indicators {
-      bottom: 8%;
+      bottom: 4%;
       li {
         width: 12px;
         height: 13px;
@@ -75,9 +82,10 @@ export default {
     .carousel-item {
       position: unset;
       height: 400px;
-       animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s both;
-      -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s both;
-
+      animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) 1s
+        both;
+      -webkit-animation: tracking-in-expand 0.7s
+        cubic-bezier(0.215, 0.61, 0.355, 1) 1s both;
 
       // padding: 4rem;
 
@@ -126,7 +134,7 @@ export default {
 
         @include lg-min {
           width: 90%;
-          margin: 3rem 8rem  1rem;
+          margin: 3rem 8rem 1rem;
         }
       }
 

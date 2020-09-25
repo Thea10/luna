@@ -29,7 +29,7 @@
               </h4>
             </li>
 
-            <li class="list-group-item p-2">
+            <li class="list-group-item p-2 logout" @click="logOut">
               <h4>
                 Log Out
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
@@ -44,7 +44,7 @@
 
         <ValidationObserver ref="observer">
           <form
-            slot-scope="{validate}"
+            slot-scope="{ validate }"
             @submit.prevent="validate().then(updateDetails)"
             class="p-4"
           >
@@ -60,11 +60,14 @@
                     type="text"
                     placeholder="First Name"
                     v-model="form.firstname"
-                    :class="{'form-control mb-2  border-top-0 border-right-0 border-left-0 bg-transparent': true, 'error': errors[0]}"
-                    :state="errors[0] ? false : (valid ? true : null)"
+                    :class="{
+                      'form-control mb-2  border-top-0 border-right-0 border-left-0 bg-transparent': true,
+                      error: errors[0]
+                    }"
+                    :state="errors[0] ? false : valid ? true : null"
                   />
 
-                  <span class="small text-danger">{{errors[0]}}</span>
+                  <span class="small text-danger">{{ errors[0] }}</span>
                 </div>
               </ValidationProvider>
 
@@ -79,11 +82,14 @@
                     type="text"
                     placeholder="Last Name"
                     v-model="form.lastname"
-                    :class="{'form-control mb-2 border-top-0 border-right-0 border-left-0 bg-transparent': true, 'error': errors[0] }"
-                    :state="errors[0] ? false : (valid ? true : null)"
+                    :class="{
+                      'form-control mb-2 border-top-0 border-right-0 border-left-0 bg-transparent': true,
+                      error: errors[0]
+                    }"
+                    :state="errors[0] ? false : valid ? true : null"
                   />
 
-                  <span class="small text-danger">{{errors[0]}}</span>
+                  <span class="small text-danger">{{ errors[0] }}</span>
                 </div>
               </ValidationProvider>
             </div>
@@ -94,50 +100,73 @@
                 class="mb-1 md-mb-2 col-md-5 p-0"
                 name="Email"
               >
-                <div slot-scope="{ valid, errors }" class="form-group mb-2 md-mb-3">
+                <div
+                  slot-scope="{ valid, errors }"
+                  class="form-group mb-2 md-mb-3"
+                >
                   <label for="Email">Email</label>
                   <input
                     type="email"
                     placeholder="Email Address"
                     pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                     v-model="form.email"
-                    :class="{'form-control  mb-1 border-top-0 border-right-0 border-left-0 bg-transparent': true, 'error': errors[0] }"
-                    :state="errors[0] ? false : (valid ? true : null)"
+                    :class="{
+                      'form-control  mb-1 border-top-0 border-right-0 border-left-0 bg-transparent': true,
+                      error: errors[0]
+                    }"
+                    :state="errors[0] ? false : valid ? true : null"
                   />
 
-                  <span class="small text-danger">{{errors[0]}}</span>
+                  <span class="small text-danger">{{ errors[0] }}</span>
                 </div>
               </ValidationProvider>
 
-              <ValidationProvider rules="required" name="Phone" class="mb-1 md-mb-2 col-md-5 p-0">
-                <div slot-scope="{ valid, errors }" class="form-group mb-2 md-mb-3">
+              <ValidationProvider
+                rules="required"
+                name="Phone"
+                class="mb-1 md-mb-2 col-md-5 p-0"
+              >
+                <div
+                  slot-scope="{ valid, errors }"
+                  class="form-group mb-2 md-mb-3"
+                >
                   <label for="Phone">Phone Number</label>
                   <input
                     type="tel"
                     placeholder="Phone"
                     v-model="form.phone"
-                    :class="{'form-control mb-1 border-top-0 border-right-0 border-left-0 bg-transparent': true, 'error':errors[0] }"
-                    :state="errors[0] ? false : (valid ? true : null)"
+                    :class="{
+                      'form-control mb-1 border-top-0 border-right-0 border-left-0 bg-transparent': true,
+                      error: errors[0]
+                    }"
+                    :state="errors[0] ? false : valid ? true : null"
                   />
 
-                  <span class="small text-danger">{{errors[0]}}</span>
+                  <span class="small text-danger">{{ errors[0] }}</span>
                 </div>
               </ValidationProvider>
             </div>
 
             <div class="form-group form-row justify-content-between mb-0">
-              <ValidationProvider rules="required" name="Address" class="mb-1 md-mb-2 col-md-5 p-0">
+              <ValidationProvider
+                rules="required"
+                name="Address"
+                class="mb-1 md-mb-2 col-md-5 p-0"
+              >
                 <div slot-scope="{ valid, errors }">
                   <label for="Address">Delivery Address</label>
                   <input
                     type="text"
                     placeholder="Address"
                     v-model="form.address"
-                    :class="{'form-control mb-2 border-top-0 border-right-0 border-left-0 bg-transparent': true, 'error': errors[0] }"
-                    :state="errors[0] ? false : (valid ? true : null)"
+                    :class="{
+                      'form-control mb-2 border-top-0 border-right-0 border-left-0 bg-transparent': true,
+                      error: errors[0]
+                    }"
+                    :state="errors[0] ? false : valid ? true : null"
                   />
 
-                  <span class="small text-danger">{{errors[0]}}</span>
+                  <span class="small text-danger">{{ errors[0] }}</span>
                 </div>
               </ValidationProvider>
             </div>
@@ -149,31 +178,44 @@
                 vid="password"
                 class="mb-1 md-mb-2 col-md-5 p-0"
               >
-                <div slot-scope="{ valid, errors }" class="form-group mb-2 md-mb-3">
+                <div
+                  slot-scope="{ valid, errors }"
+                  class="form-group mb-2 md-mb-3"
+                >
                   <label for="change password">Password</label>
-                  <div :class="{'d-flex form-control p-0 mb-1' : true , 'error' : errors[0]}">
+                  <div
+                    :class="{
+                      'd-flex form-control p-0 mb-1': true,
+                      error: errors[0]
+                    }"
+                  >
                     <input
                       :type="passwordFieldType"
                       placeholder="Password"
                       v-model="form.password"
                       class="form-control border-0 h-100 bg-transparent"
-                      :state="errors[0] ? false : (valid ? true : null)"
+                      :state="errors[0] ? false : valid ? true : null"
                     />
 
                     <span class="input-group-text bg-transparent border-0">
                       <i
                         class="fa"
                         style="cursor: pointer; color: #b98b09;"
-                        :class="{'fa-eye': showpassword, 'fa-eye-slash': !showpassword }"
+                        :class="{
+                          'fa-eye': showpassword,
+                          'fa-eye-slash': !showpassword
+                        }"
                         @click="showPassword"
                       ></i>
                     </span>
                   </div>
 
                   <span class="small text-danger">
-                    <small class="text-dark">Must be at least four characters</small>
+                    <small class="text-dark"
+                      >Must be at least four characters</small
+                    >
                     <br />
-                    {{errors[0]}}
+                    {{ errors[0] }}
                   </span>
                 </div>
               </ValidationProvider>
@@ -185,24 +227,32 @@
               >
                 <div slot-scope="{ valid, errors }" class="form-group mb-4">
                   <label for="confirm password">Confirm</label>
-                  <div :class="{'d-flex form-control p-0 mb-1' : true , 'error' : errors[0]}">
+                  <div
+                    :class="{
+                      'd-flex form-control p-0 mb-1': true,
+                      error: errors[0]
+                    }"
+                  >
                     <input
                       :type="passwordFieldType"
                       placeholder=" Confirm Password"
                       v-model="form.confirmpassword"
                       class="form-control border-0 h-100 bg-transparent"
-                      :state="errors[0] ? false : (valid ? true : null)"
+                      :state="errors[0] ? false : valid ? true : null"
                     />
                     <span class="input-group-text bg-transparent border-0">
                       <i
                         class="fa"
                         style="cursor: pointer;  color: #b98b09;"
-                        :class="{'fa-eye': showpassword, 'fa-eye-slash': !showpassword }"
+                        :class="{
+                          'fa-eye': showpassword,
+                          'fa-eye-slash': !showpassword
+                        }"
                         @click="showPassword"
                       ></i>
                     </span>
                   </div>
-                  <span class="small text-danger">{{errors[0]}}</span>
+                  <span class="small text-danger">{{ errors[0] }}</span>
                 </div>
               </ValidationProvider>
             </div>
@@ -228,7 +278,12 @@ label {
 .profile-section {
   .profile-header {
     height: 40vh;
-    background: $primary;
+    background: rgba(215, 168, 30, 0.59);
+
+    @include md-min {
+      width: 85vw;
+      margin: auto -1rem auto auto;
+    }
   }
 
   .profile-content {
@@ -261,10 +316,25 @@ label {
         -webkit-text-fill-color: white;
         transition: all 0.5s;
       }
+
+      h4{
+        font-size: 11px;
+      }
+
+      .logout {
+        color: $primary;
+        transition: all 0.5s;
+        cursor: pointer;
+
+        &:hover > * {
+          font-size: 10px;
+        }
+      }
     }
 
-    .edit-info{
-      small, .small{
+    .edit-info {
+      small,
+      .small {
         font-size: 70%;
       }
     }
@@ -280,6 +350,8 @@ label {
 </style>
 
 <script>
+import {  mapActions } from "vuex";
+
 export default {
   name: "Profile",
   data() {
@@ -298,6 +370,10 @@ export default {
     };
   },
   methods: {
+     ...mapActions({
+      logout: "LOG_OUT"
+    }),
+
     showPassword() {
       this.passwordFieldType =
         this.passwordFieldType === "password" ? "text" : "password";
@@ -305,6 +381,13 @@ export default {
     },
     updateDetails() {
       console.log(this.form);
+    },
+
+    async logOut() {
+      await this.logout();
+      this.$router.replace('/');
+
+
     }
   }
 };

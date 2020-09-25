@@ -1,6 +1,6 @@
 <template>
   <nav class="nav navbar-expand-md navbar-light d-flex flex-column h-100 main-nav">
-    <div class="d-flex justify-content-md-center">
+    <div class="d-flex justify-content-md-center align-items-center">
       <button
         class="navbar-toggler collapsebtn1 d-lg-none"
         type="button"
@@ -48,9 +48,9 @@
       </li>
 
       <li class="nav-item">
-        <router-link to="/login" class="nav-link">
+        <router-link :to="loggedIn ? '/profile' : '/login'" class="nav-link">
           <i class="far fa-user"></i>
-          <h6>Log In</h6>
+          <h6>{{loggedIn ? 'Profile' : 'Log In' }}</h6>
         </router-link>
       </li>
 
@@ -64,8 +64,27 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 export default {
-  name: "Nav"
+  name: "Nav",
+  methods:{
+   ...mapActions({
+     getLogin: "GET_LOG_IN"
+   }),
+   
+  },
+  computed:{
+    ...mapGetters({
+      loggedIn: "loggedIn"
+    })
+
+
+  },
+  async mounted() {
+   await this.getLogin();
+ 
+  },
+ 
 };
 </script>
 
@@ -83,11 +102,11 @@ export default {
     padding: 5px;
     margin-right: 10px;
     border: none;
-    height: 90px;
+    height: 40px;
 
     .animated-icon1 {
       width: 20px;
-      height: 20px;
+      height: inherit;
       position: relative;
       margin: 0px;
           margin-left: 20px;
@@ -157,7 +176,7 @@ export default {
     margin-left: 0;
 
     img {
-      height: 100px;
+      height: 80px;
       mix-blend-mode: multiply;
 
       @include md-min {

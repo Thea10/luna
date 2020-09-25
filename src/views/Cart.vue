@@ -71,6 +71,10 @@ export default {
     ...mapActions({
       checkout: "items/CHECK_OUT"
     }),
+  // ...mapMutations({
+  //     setcart: "items/SET_CART"
+  //   }),
+
    async checkoutCart() { 
       this.loading = true;
       await this.checkout;

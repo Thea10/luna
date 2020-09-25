@@ -1,8 +1,18 @@
 <template>
   <div id="app">
-    <Nav></Nav>
-    <ContactBar></ContactBar>
-    <router-view />
+    <div class="main-loader bg-white" v-if="loading">
+      <img
+        src="@/assets/mainloader.svg"
+        alt="loading"
+        height="250px"
+        width="250px"
+      />
+    </div>
+    <div v-else>
+      <Nav></Nav>
+      <ContactBar></ContactBar>
+      <router-view />
+    </div>
 
     <img src="@/assets/blob2.svg" class="blobtwo" alt />
   </div>
@@ -16,6 +26,19 @@ export default {
   components: {
     Nav,
     ContactBar
+  },
+  data: function() {
+    return {
+      loading: false
+    };
+  },
+
+  mounted() {
+    this.loading = true;
+
+    setTimeout(() => {
+      this.loading = false;
+     }, 3000);
   }
 };
 </script>
@@ -32,10 +55,15 @@ export default {
   color: #2c3e50;
   background-image: url("./assets/luna.jpg");
 
-  background-size: contain;
+  background-size: auto;
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
+}
+
+.main-loader {
+  height: 100vh;
+  margin: 7rem auto 0;
 }
 
 #nav {
@@ -60,10 +88,9 @@ export default {
   width: 60px;
 }
 .item-text {
-      animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 1s both;
-      -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 1s
-        both;
-    }
+  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 1s both;
+  -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 1s both;
+}
 
 ::-webkit-scrollbar {
   -webkit-appearance: none;

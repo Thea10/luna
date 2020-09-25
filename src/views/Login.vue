@@ -1,6 +1,6 @@
 <template>
   <div class="container p-3">
-    <h2 class="mb-3">Your amazing shopping experience with us begins here</h2>
+    <h2 class="mb-3">Your  shopping experience with us begins here</h2>
     <ValidationObserver ref="observer">
       <form
         slot-scope="{validate}"
@@ -139,6 +139,9 @@ export default {
       setTimeout(() => {
          this.loading = false;
       }, 1000);
+     
+      this.$router.replace('cart');
+    
      
     }
   }

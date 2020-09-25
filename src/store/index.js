@@ -87,10 +87,8 @@ let productstore = {
         payload.id = random(state.cartitems.length + 1, 900);
 
         state.cartitems = [...state.cartitems, payload];
-        // console.log(state.cartitems);
       }
-
-      // console.log(state.cartitems);
+     // localStorage.setItem("lunacart", JSON.stringify(state.cartitems) );
     },
 
     REMOVE_ITEM(state, payload) {
@@ -123,6 +121,7 @@ let productstore = {
   },
   // perform asynchronous operations inside an action; remember this when you have to make api calls
   actions: {
+    //getcart api
     REMOVE_FROM_CART({ commit }, item) {
       commit("REMOVE_ITEM", item);
     },
@@ -151,7 +150,7 @@ let productstore = {
   modules: {},
 };
 
-//module for user will contain submodules login, signup and porfile
+//module for user will contain submodules login, signup and profile
 
 let loginstore = {
   namespaced: true,
@@ -178,8 +177,9 @@ let loginstore = {
     },
   },
   actions: {
-    LOG_IN({ commit }, item) {
+    LOG_IN({ commit, dispatch }, item) {
       sessionStorage.setItem("logindata", JSON.stringify({ ...item }));
+      dispatch('GET_LOG_IN', null, { root: true });
       setTimeout(() => {
         commit("CLEAR_DATA");
       }, 3000);
@@ -251,10 +251,30 @@ let store = new Vuex.Store({
     login: loginstore,
     signup: signupstore
   },
-  state: {},
-  mutations: {},
-  getters: {},
-  actions: {},
+  state: {
+    loggedin: false
+  },
+  mutations: {
+    SET_LOG_IN(state, payload){
+      state.loggedin = payload;
+    }
+  },
+  getters: {
+    loggedIn: (state) => state.loggedin
+  },
+  actions: {
+    GET_LOG_IN({commit}){
+      sessionStorage.getItem("logindata") ? commit("SET_LOG_IN", true) : commit("SET_LOG_IN", false)
+    },
+
+    LOG_OUT({commit}){
+      setTimeout(() => {
+        sessionStorage.removeItem("logindata");
+        commit("SET_LOG_IN", false);
+      }, 1000);
+     
+    }
+  },
 });
 
 
