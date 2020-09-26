@@ -8,9 +8,9 @@
         data-target="#collapsibleNavId"
         aria-controls="collapsibleNavId"
         aria-expanded="false"
-        aria-label="Toggle navigation"
+        aria-label="Toggle navigation" @click="toggleBtn"
       >
-        <div class="animated-icon1">
+        <div class="animated-icon1" id="animated-icon1">
           <span></span>
           <span></span>
           <span></span>
@@ -26,28 +26,28 @@
       class="navbar-nav collapse navbar-collapse flex-column align-items-baseline align-items-md-center"
       id="collapsibleNavId"
     >
-      <li class="nav-item">
+      <li class="nav-item" @click="toggleNav">
         <router-link to="/" class="nav-link">
           <i class="fas fa-home"></i>
           <h6>Home</h6>
         </router-link>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" @click="toggleNav">
         <router-link to="/buy" class="nav-link">
           <i class="fas fa-shopping-basket"></i>
           <h6>Store</h6>
         </router-link>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" @click="toggleNav">
         <router-link to="/cart" class="nav-link">
           <i class="fas fa-shopping-cart"></i>
           <h6>Cart</h6>
         </router-link>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" @click="toggleNav">
         <router-link :to="loggedIn ? '/profile' : '/login'" class="nav-link">
           <i class="far fa-user"></i>
           <h6>{{loggedIn ? 'Profile' : 'Log In' }}</h6>
@@ -71,13 +71,24 @@ export default {
    ...mapActions({
      getLogin: "GET_LOG_IN"
    }),
+
+   toggleBtn(){
+     document.getElementById("animated-icon1").classList.toggle('open')
+
+   },
+
+   toggleNav(){
+    let nav =  document.getElementById('collapsibleNavId');
+    
+   if( nav.classList.contains('show')) { nav.classList.remove('show');   this.toggleBtn(); } 
+   
+   }
    
   },
   computed:{
     ...mapGetters({
       loggedIn: "loggedIn"
-    })
-
+    }),
 
   },
   async mounted() {
