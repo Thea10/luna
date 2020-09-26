@@ -10,8 +10,9 @@
     </div>
     <div v-else>
       <Nav></Nav>
-      <ContactBar></ContactBar>
+     
       <router-view />
+       <ContactBar></ContactBar>
     </div>
 
     <img src="@/assets/blob2.svg" class="blobtwo" alt />
@@ -53,12 +54,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-image: url("./assets/luna.jpg");
+  // background-image: url("./assets/luna.jpg");
 
-  background-size: auto;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
+  // background-size: auto;
+  // background-repeat: no-repeat;
+  // background-position: center;
+  // background-attachment: fixed;
+  background:#f5f5f500;
 }
 
 .main-loader {
@@ -87,10 +89,10 @@ export default {
   height: 70px;
   width: 60px;
 }
-.item-text {
-  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 1s both;
-  -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 1s both;
-}
+// .item-text {
+//   animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 1s both;
+//   -webkit-animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) 1s both;
+// }
 
 ::-webkit-scrollbar {
   -webkit-appearance: none;

@@ -1,7 +1,7 @@
 <template>
   <div class="item p-2 w-100">
-    <div class="img text-center p-3">
-      <img class="h-75" :src="product.img" alt="l" />
+    <div class="img text-center">
+      <img  :src="product.img" alt="productimg" />
     </div>
     <div class="d-flex flex-column justify-content-between details">
       <h6>{{product.name}}</h6>
@@ -74,7 +74,7 @@ export default {
         this.message = `Item ${item.name} added`;
         this.status = "success";
          this.showbanner = true;
-      }, 1000);
+      }, 500);
      
       setTimeout(() => {
         this.showbanner = false;

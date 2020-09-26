@@ -10,6 +10,7 @@ $darkText: rgba(0, 0, 0, 0.63);
 $lightBg: rgba(215, 168, 30, 0.3);
 $price: rgba(5, 5, 5, 0.6);
 $white: #ffffff;
+$screen-xxsm-max: 375px;
 $screen-xsm-max: 475px;
 $screen-sm-max: 575px;
 $screen-md-max: 767px;
@@ -19,6 +20,13 @@ $screen-sm-min: 576px;
 $screen-md-min: 768px;
 $screen-lg-min: 992px;
 $screen-xl-min: 1200px;
+
+@mixin xxsm-max {
+    @media (max-width: #{$screen-xxsm-max}) {
+        @content;
+    }
+}
+
 @mixin xsm-max {
     @media (max-width: #{$screen-xsm-max}) {
         @content;

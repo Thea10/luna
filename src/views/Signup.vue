@@ -2,7 +2,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable prettier/prettier */
 <template>
-  <div class="container px-3">
+  <div class="container pt-3 px-3">
     <h2 class="mb-3">Your  shopping experience with us begins here</h2>
     <ValidationObserver ref="observer">
       <form

@@ -1,6 +1,6 @@
 <template>
-  <div class="container buy">
-    <h2 class="mb-5" style="margin-top: -10px">MADE BY LUNA</h2>
+  <div class="container buy pt-3">
+    <h2 class="mb-5">MADE BY LUNA</h2>
 
     <section class="product-body">
       <div class="d-flex flex-wrap justify-content-around align-items-center">
@@ -142,17 +142,17 @@ export default {
 
       .dropdown-item {
         font-size: 0.7rem;
-        font-weight: 100;
+           font-weight: 600;
         transition: all 0.5s;
         margin-bottom: 0.2rem;
         &:focus,
-        &:hover, &.selected {
+        &:hover,
+        &.selected {
           color: $primary;
           text-decoration: none;
           background-color: transparent;
-          font-weight: 100;
           border-left: 2px solid $primary;
-           border-right: 2px solid $primary;
+          border-right: 2px solid $primary;
 
           i {
             color: $primary;
@@ -174,15 +174,35 @@ export default {
         transition: box-shadow 0.6s;
 
         .img {
-          height: 65% !important;
+          height: 60% !important;
+          padding: 0.2rem !important;
+          width: 60%;
+          margin: auto;
+          margin-bottom: 0.5rem;
 
           img {
-            border-top-left-radius: 84%;
-            border-bottom-left-radius: 49%;
-            border-bottom-right-radius: 91%;
-            border-top-right-radius: 38%;
-            transform: rotate(54deg);
-            transition: transform 0.9s;
+            // border-top-left-radius: 84%;
+            // border-bottom-left-radius: 49%;
+            // border-bottom-right-radius: 91%;
+            // border-top-right-radius: 38%;
+            // transform: rotate(54deg);
+             transition: transform 0.9s;
+            width: 100%;
+            height: 100% !important;
+              border-radius: 5px;
+
+          }
+
+          @include md-min{
+               width: 90%;
+             
+          }
+
+          @include xsm-max{
+               height: 65% !important;
+          }
+           @include xxsm-max{
+               width: 70%;
           }
         }
 
@@ -195,8 +215,9 @@ export default {
 
           .img {
             img {
-              border-radius: 5px;
-              transform: scale3d(1.3, 1.3, 1.3);
+            
+              // transform: scale3d(1.3, 1.3, 1.3);
+              transform: scale(0.9);
               box-shadow: 0px 0px 0px 1px rgb(234 188 53 / 81%);
             }
           }

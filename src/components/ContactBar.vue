@@ -1,32 +1,36 @@
 <template>
-  <nav class="navbar justify-content-end">
+  <nav class="contact-nav navbar justify-content-end">
     <ul class="mt-3">
       <li class="nav-item dropdown">
         <a
+          title="contact"
           class="btn dropdown-toggle"
           href="#"
           id="dropdownId"
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
-        >Contact Us</a>
+          ><i class="fa fa-envelope" aria-hidden="true"></i
+        ></a>
         <div class="dropdown-menu" aria-labelledby="dropdownId">
           <ValidationObserver ref="observer">
             <form
-              slot-scope="{validate}"
+              slot-scope="{ validate }"
               @submit.prevent="validate().then(sendMessage)"
               class="p-2 p-md-4"
             >
               <ValidationProvider rules="required" name="Full Name">
-                <div slot-scope="{ valid, errors}" class="form-group mb-1">
+                <div slot-scope="{ valid, errors }" class="form-group mb-1">
                   <input
                     type="text"
                     placeholder="Full Name"
                     v-model="form.fullname"
-                    :class="{'form-control mb-1': true, 'error': errors[0]}"
-                    :state="errors[0] ? false: (valid ? true : null)"
+                    :class="{ 'form-control mb-1': true, error: errors[0] }"
+                    :state="errors[0] ? false : valid ? true : null"
                   />
-                  <span style="font-size: 70%;" class="small text-danger">{{errors[0]}}</span>
+                  <span style="font-size: 70%;" class="small text-danger">{{
+                    errors[0]
+                  }}</span>
                 </div>
               </ValidationProvider>
 
@@ -37,11 +41,13 @@
                     placeholder="Email"
                     pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                     v-model="form.email"
-                    :class="{'form-control mb-1': true, 'error': errors[0] }"
-                    :state="errors[0] ? false : (valid ? true : null)"
+                    :class="{ 'form-control mb-1': true, error: errors[0] }"
+                    :state="errors[0] ? false : valid ? true : null"
                   />
 
-                  <span style="font-size: 70%;" class="small text-danger">{{errors[0]}}</span>
+                  <span style="font-size: 70%;" class="small text-danger">{{
+                    errors[0]
+                  }}</span>
                 </div>
               </ValidationProvider>
 
@@ -51,11 +57,13 @@
                     type="tel"
                     placeholder="Phone"
                     v-model="form.phone"
-                    :class="{'form-control mb-1': true, 'error':errors[0] }"
-                    :state="errors[0] ? false : (valid ? true : null)"
+                    :class="{ 'form-control mb-1': true, error: errors[0] }"
+                    :state="errors[0] ? false : valid ? true : null"
                   />
 
-                  <span style="font-size: 70%;" class="small text-danger">{{errors[0]}}</span>
+                  <span style="font-size: 70%;" class="small text-danger">{{
+                    errors[0]
+                  }}</span>
                 </div>
               </ValidationProvider>
 
@@ -67,11 +75,13 @@
                     rows="10"
                     placeholder="Your message"
                     v-model="form.message"
-                    :class="{'form-control mb-1': true, 'error':errors[0] }"
-                    :state="errors[0] ? false : (valid ? true : null)"
+                    :class="{ 'form-control mb-1': true, error: errors[0] }"
+                    :state="errors[0] ? false : valid ? true : null"
                   ></textarea>
 
-                  <span style="font-size: 70%;" class="small text-danger">{{errors[0]}}</span>
+                  <span style="font-size: 70%;" class="small text-danger">{{
+                    errors[0]
+                  }}</span>
                 </div>
               </ValidationProvider>
 
@@ -108,13 +118,35 @@ export default {
 <style lang="scss" >
 @import "@/assets/variables.scss";
 @import "@/assets/keyframes.scss";
-nav {
+.contact-nav {
+  position: fixed;
+    bottom: 0;
+    right: 0;
   ul {
     list-style: none;
 
+    a.btn.dropdown-toggle {
+      background: white;
+      color: #d7a81e; // #c39100;
+      border: 1px solid $primary;
+      transition: all 0.5s;
+      font-size: 0.9rem;
+      border-radius: 0 20px;
+      padding: 0.8rem;
+
+      &::after {
+        content: unset;
+      }
+      &:hover {
+        color: #ffffff;
+        background: #d7a81e;
+      }
+    }
+
     .dropdown-menu {
       position: absolute;
-      top: 82%;
+      bottom: 60%;
+      top: unset;
       left: unset;
       right: 0;
       width: 280px;

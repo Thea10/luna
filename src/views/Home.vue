@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 <template>
-  <div class="container">
+  <div class="container pt-3">
     <div class="home">
       <div
         id="carouselExampleIndicators"
@@ -34,7 +34,7 @@
           </div>
         </div>
 
-        <router-link to="/buy" class="btn shop-btn" style="margin-top: 0.5rem;">
+        <router-link to="/buy" class="btn shop-btn" style="margin-top: 1rem; border-radius: 10px 0">
           START SHOPPING</router-link
         >
       </div>
@@ -44,9 +44,7 @@
 
 <script>
 export default {
-  name: "Home",
- 
-  
+  name: "Home"
 };
 </script>
 
@@ -117,6 +115,10 @@ export default {
             height: 150px !important;
           }
         }
+
+        @include xsm-max{
+              width: 340px;
+        }
       }
 
       &.two,
@@ -133,7 +135,7 @@ export default {
         }
 
         @include lg-min {
-          width: 90%;
+          width: 75%;
           margin: 3rem 8rem 1rem;
         }
       }
@@ -141,7 +143,7 @@ export default {
       h3 {
         // color: $primary;
         font-weight: bold;
-        font-size: 50px;
+        font-size: 40px;
         background: -webkit-linear-gradient(#d19d04, #4d3a03);
         background: linear-gradient(#d19d04, #4d3a03);
         background-clip: text;

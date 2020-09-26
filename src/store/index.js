@@ -130,7 +130,7 @@ let productstore = {
       // console.log(item);
       setTimeout(() => {
         commit("UPDATE_CART", item);
-      }, 3000);
+      }, 1000);
     },
 
     WISH_ITEM({ commit }, item) {

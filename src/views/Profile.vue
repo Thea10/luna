@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-section container-fluid p-0">
+  <div class="profile-section container-fluid p-0 pt-3">
     <div class="profile-header"></div>
 
     <div

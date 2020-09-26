@@ -29,11 +29,11 @@
 
         <div class="dropdown-divider"></div>
         <a :class="{'dropdown-item': true, 'selected': orderBy === 'asc'}" href="#" @click="$emit('filterorder', 'asc')">
-          Ascending
+          Low to High
           <i class="fa fa-filter" aria-hidden="true" v-if="orderBy === 'asc'"></i>
         </a>
         <a :class="{'dropdown-item': true, 'selected': orderBy === 'desc'}" href="#" @click="$emit('filterorder', 'desc')">
-          Descending
+          High to Low
           <i class="fa fa-filter" aria-hidden="true" v-if="orderBy === 'desc'"></i>
         </a>
       </div>

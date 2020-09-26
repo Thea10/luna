@@ -1,5 +1,7 @@
 <template>
-  <nav class="nav navbar-expand-md navbar-light d-flex flex-column h-100 main-nav">
+  <nav
+    class="nav navbar-expand-md navbar-light d-flex flex-column h-100 main-nav"
+  >
     <div class="d-flex justify-content-md-center align-items-center">
       <button
         class="navbar-toggler collapsebtn1 d-lg-none"
@@ -8,7 +10,8 @@
         data-target="#collapsibleNavId"
         aria-controls="collapsibleNavId"
         aria-expanded="false"
-        aria-label="Toggle navigation" @click="toggleBtn"
+        aria-label="Toggle navigation"
+        @click="toggleBtn"
       >
         <div class="animated-icon1" id="animated-icon1">
           <span></span>
@@ -50,7 +53,7 @@
       <li class="nav-item" @click="toggleNav">
         <router-link :to="loggedIn ? '/profile' : '/login'" class="nav-link">
           <i class="far fa-user"></i>
-          <h6>{{loggedIn ? 'Profile' : 'Log In' }}</h6>
+          <h6>{{ loggedIn ? "Profile" : "Log In" }}</h6>
         </router-link>
       </li>
 
@@ -64,38 +67,35 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Nav",
-  methods:{
-   ...mapActions({
-     getLogin: "GET_LOG_IN"
-   }),
-
-   toggleBtn(){
-     document.getElementById("animated-icon1").classList.toggle('open')
-
-   },
-
-   toggleNav(){
-    let nav =  document.getElementById('collapsibleNavId');
-    
-   if( nav.classList.contains('show')) { nav.classList.remove('show');   this.toggleBtn(); } 
-   
-   }
-   
-  },
-  computed:{
-    ...mapGetters({
-      loggedIn: "loggedIn"
+  methods: {
+    ...mapActions({
+      getLogin: "GET_LOG_IN"
     }),
 
+    toggleBtn() {
+      document.getElementById("animated-icon1").classList.toggle("open");
+    },
+
+    toggleNav() {
+      let nav = document.getElementById("collapsibleNavId");
+
+      if (nav.classList.contains("show")) {
+        nav.classList.remove("show");
+        this.toggleBtn();
+      }
+    }
+  },
+  computed: {
+    ...mapGetters({
+      loggedIn: "loggedIn"
+    })
   },
   async mounted() {
-   await this.getLogin();
- 
-  },
- 
+    await this.getLogin();
+  }
 };
 </script>
 
@@ -105,8 +105,11 @@ export default {
 
 .nav {
   &.main-nav {
-    background-color: rgba(215, 168, 30, 0.59) !important;
-        border-radius: 50px 0;
+    background-color: #e1be56 !important; //rgba(215, 168, 30, 0.59)
+
+    @include md-min {
+      border-radius: 50px 0;
+    }
   }
   // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
   .collapsebtn1 {
@@ -120,7 +123,7 @@ export default {
       height: inherit;
       position: relative;
       margin: 0px;
-          margin-left: 20px;
+      margin-left: 20px;
       -webkit-transform: rotate(0deg);
       transform: rotate(0deg);
       -webkit-transition: 0.5s ease-in-out;
@@ -212,7 +215,7 @@ export default {
         .far {
           border-radius: 50%;
           padding: 1rem;
-       //   border: 1px solid $inactive;
+          //   border: 1px solid $inactive;
           color: $inactive;
           transition: all 0.8s;
           -webkit-text-stroke: medium;
@@ -307,11 +310,11 @@ export default {
       //   background: #dba521d4;
 
       position: absolute;
-      top: 14%;
+      top: 15%;
       left: 5%;
       right: 0;
       z-index: 1030;
-      background: #ffffff;
+      background: #e1be56; // rgba(215, 168, 30, 0.75)
       width: 90%;
       border-radius: 0 0 10px 10px;
 
@@ -357,6 +360,7 @@ export default {
     .blobone {
       width: 70px;
       height: 70px;
+      display: none;
     }
   }
 }
